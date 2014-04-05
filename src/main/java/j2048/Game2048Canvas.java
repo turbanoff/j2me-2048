@@ -16,14 +16,16 @@ public class Game2048Canvas extends Canvas {
     short[][] state = new short[4][4];
 
     public Game2048Canvas() {
+        setFullScreenMode(true);
         this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_LARGE);
 
+        addCommand(command);
         freeCount = 16;
         insertNew();
         insertNew();
     }
     
-    private Command command;
+    private Command command = new Command("Exit", Command.EXIT, 60);
 
     protected void keyPressed(int keyCode) {
         int action = getGameAction(keyCode);
@@ -50,12 +52,7 @@ public class Game2048Canvas extends Canvas {
             return;
         }
         
-        insertNew();
-        if (command != null) {
-            removeCommand(command);
-        }
-        command = new Command(Integer.toString(freeCount), Command.EXIT, 60);
-        addCommand(command);
+        insertNew();       
         repaint();
     }
 
@@ -273,7 +270,7 @@ public class Game2048Canvas extends Canvas {
         g.fillRect(0, 0, width, height);
         
         g.setColor(0xBB, 0xAD, 0xA0);
-        int widthOne = (width - 3) / 4; //отнимаем 3 пикселя, и делим на 4
+        int widthOne = (width - 3) / 4; //3 pixels - for draw lines
         int heightOne = (height - 3) / 4;
 
         g.drawLine(widthOne, 0, widthOne, height);
