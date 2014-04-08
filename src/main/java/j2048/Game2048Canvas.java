@@ -33,18 +33,22 @@ public class Game2048Canvas extends Canvas {
         boolean isModified = false;
         switch (action) {
             case Canvas.LEFT:
+            case Canvas.KEY_NUM4:
                 isModified = moveLeft();
                 break;
                 
             case Canvas.UP:
+            case Canvas.KEY_NUM2:
                 isModified = moveUp();
                 break;
 
             case Canvas.RIGHT:
+            case Canvas.KEY_NUM6:
                 isModified = moveRight();
                 break;
 
             case Canvas.DOWN:
+            case Canvas.KEY_NUM8:
                 isModified = moveDown(); 
                 break;
         }
